@@ -40,7 +40,7 @@ def synthesize_ssml(ssml,
     )
 
     # The response's audio_content is binary.
-    with open("C:/Users/datas/Downloads/TTS/output/"+booktitle+voice_name+str(speaking_rate)+".mp3", "wb") as out:
+    with open(f"C:/Users/datas/Downloads/TTS/output/{booktitle}{voice_name}" + str(speaking_rate) + ".mp3", "wb") as out:
         out.write(response.audio_content)
         
 

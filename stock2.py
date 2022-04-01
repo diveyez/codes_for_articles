@@ -39,8 +39,7 @@ class IndicatorMixin:
         tr1 = high - low
         tr2 = (high - prev_close).abs()
         tr3 = (low - prev_close).abs()
-        true_range = pd.DataFrame(data={"tr1": tr1, "tr2": tr2, "tr3": tr3}).max(axis=1)
-        return true_range
+        return pd.DataFrame(data={"tr1": tr1, "tr2": tr2, "tr3": tr3}).max(axis=1)
 
 
 def dropna(df: pd.DataFrame) -> pd.DataFrame:
@@ -367,8 +366,7 @@ def to_excel(df):
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     df.to_excel(writer, sheet_name='Sheet1')
     writer.save()
-    processed_data = output.getvalue()
-    return processed_data
+    return output.getvalue()
 
 def get_table_download_link(df):
     """Generates a link allowing the data in a given panda dataframe to be downloaded
