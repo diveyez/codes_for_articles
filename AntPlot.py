@@ -16,19 +16,13 @@ class Ant:
 		"""The (x, y) position of the Location the Ant 
 		would move to if it moved forward left.
 		"""
-		if not self.has_food:
-			return (self.x, self.y + 1)
-		else:
-			return (self.x, self.y - 1)
+		return (self.x, self.y - 1) if self.has_food else (self.x, self.y + 1)
 	
 	def next_right(self):
 		"""The (x, y) position of the Location the Ant 
 		would move to if it moved forward right.
 		"""
-		if not self.has_food:
-			return (self.x + 1, self.y)
-		else:
-			return (self.x - 1, self.y)
+		return (self.x - 1, self.y) if self.has_food else (self.x + 1, self.y)
 	
 	def left_pheromone(self):
 		"""The amount of pheromone in the Location that 
@@ -82,10 +76,9 @@ class Ant:
 		pos = (self.x, self.y)
 		if pos == (0, 0):
 			self.has_food = False
-		else:
-			if self.model.has_food(pos) and not self.has_food:
-				self.model.remove_food(pos)
-				self.has_food = True
+		elif self.model.has_food(pos) and not self.has_food:
+			self.model.remove_food(pos)
+			self.has_food = True
 
 	def lay_pheromone(self):
 		"""This Ant lays pheromone in its current Location."""
@@ -172,9 +165,9 @@ class Model:
 	
 	def add_ants(self, n):
 		"""Add n ants to the nest. Each ant starts at (0,0)"""
-		for i in range(n):
+		for _ in range(n):
 			ant = Ant(self)
-			pos = (ant.x, ant.y) 
+			pos = (ant.x, ant.y)
 			if pos in self.ants:
 				self.ants[pos].append(ant)
 			else:
@@ -235,9 +228,7 @@ class Model:
 	
 	def num_ants(self, pos):
 		"""Returns the number of Ants at pos."""
-		if pos in self.ants:
-			return len(self.ants[pos])
-		else: return 0
+		return len(self.ants[pos]) if pos in self.ants else 0
 
 	def at_capacity(self, pos):
 		"""Returns True if the Location at pos is full with Ants,
@@ -249,20 +240,20 @@ if __name__ == "__main__":
 	model = Model()
 	model.place_food(0.5)
 	timesteps = 600
-	for i in range(timesteps):
-	        model.add_ants(4)
-	        model.move_ants()
+	for _ in range(timesteps):
+		model.add_ants(4)
+		model.move_ants()
 	positions = model.ants
 
 	xdata = []
 	ydata = []
-	plt.show() 
+	plt.show()
 	axes = plt.gca()
 	axes.set_xlim(0, 30)
 	axes.set_ylim(0, 30)
 	line, = axes.plot(xdata, ydata, 'gx') # A green mark for an ant
 
-			
+
 	for pos in positions:
 	    x, y = pos
 	    xdata.append(x)

@@ -13,19 +13,19 @@ class cookie():
 
 if __name__ == "__main__":
 	
-	smallCookie = cookie(3,'rasin')
-	largeCookie = cookie(10,'chocolate')
+    smallCookie = cookie(3,'rasin')
+    largeCookie = cookie(10,'chocolate')
 
-	# smallCookie
-	print("My small cookie is a " + smallCookie.theFlavor + " cookie.")
-	print("It's area is: ")
-	print(smallCookie.area())
-	print("And it's perimeter is: ")
-	print(smallCookie.perimeter())
+    	# smallCookie
+    print(f"My small cookie is a {smallCookie.theFlavor} cookie.")
+    print("It's area is: ")
+    print(smallCookie.area())
+    print("And it's perimeter is: ")
+    print(smallCookie.perimeter())
 
-	# largeCookie
-	print("My large cookie is a " + largeCookie.theFlavor + " cookie.")
-	print("It's area is: ")
-	print(largeCookie.area())
-	print("And it's perimeter is: ")
-	print(largeCookie.perimeter())
+    	# largeCookie
+    print(f"My large cookie is a {largeCookie.theFlavor} cookie.")
+    print("It's area is: ")
+    print(largeCookie.area())
+    print("And it's perimeter is: ")
+    print(largeCookie.perimeter())
